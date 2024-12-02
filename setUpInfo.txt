@@ -1,0 +1,52 @@
+<pom.xml>
+		<!-- 스프링 3.x부터는 내장형 톰캣 디펜던시 제거
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>-->
+
+		<!-- 대신 아래 tomcat.embed 디펜던시 작성 -->
+		<dependency>
+		    <groupId>org.apache.tomcat.embed</groupId>
+		    <artifactId>tomcat-embed-jasper</artifactId>
+		    <scope>provided</scope>
+		</dependency>
+		
+		<!-- 스프링 2.x이하는 jstl 1.2 -->
+		<!-- jstl(스프링 3.x이상은 jakarta) -->
+		<dependency>
+			<groupId>jakarta.servlet.jsp.jstl</groupId>
+			<artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>jakarta.servlet</groupId>
+			<artifactId>jakarta.servlet-api</artifactId>
+			<version>6.0.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.web</groupId>
+			<artifactId>jakarta.servlet.jsp.jstl</artifactId>
+			<version>3.0.1</version>
+		</dependency>
+
+		<!-- Oracle 연결 -->
+		<dependency>
+			<groupId>com.oracle.database.jdbc</groupId>
+			<artifactId>ojdbc8</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- MyBatis 사용 -->
+		<dependency>
+		     <groupId>org.mybatis.spring.boot</groupId>
+		     <artifactId>mybatis-spring-boot-starter</artifactId>
+		     <version>3.0.3</version>
+		</dependency>
+
+jsp파일에서 <c:forEach>구문 warning sign
+sts - window - preferences - web - jsp Files - validation - custom actions 
+	- Other problems with TagExtraInfo class -> Ignore 변경
+(현재 sts4 사용중)
