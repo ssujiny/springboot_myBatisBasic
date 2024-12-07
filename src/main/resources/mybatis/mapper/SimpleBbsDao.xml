@@ -10,16 +10,20 @@
 	</select>
 	
 	<select id="viewDao" resultType="com.study.springboot.dto.SimpleBbsDto">
-		SELECT * FROM simpleBoard WHERE id = #{param1}
+		SELECT * FROM simpleBoard WHERE id = #{0}
 	</select>
 	
-	<insert id="writeDao">
+	<insert id="writeDao" parameterType="java.util.HashMap">
 		INSERT INTO simpleBoard (id, writer, title, content)
-		VALUES (simpleBoard_seq.nextval, #{param1}, #{param2}, #{param3})
+		VALUES (simpleBoard_seq.nextval, #{item1}, #{item2}, #{item3})
 	</insert>
 	
 	<delete id="deleteDao">
-		delete from simpleBoard where id = #{param1}
+		delete from simpleBoard where id = #{_id}
 	</delete>
+	
+	<select id="articleCount" resultType="_int">
+		select count(*) from simpleBoard
+	</select>
 	
 </mapper>
