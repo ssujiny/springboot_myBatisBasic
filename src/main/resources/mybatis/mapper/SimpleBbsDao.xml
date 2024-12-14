@@ -3,25 +3,31 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
+<!-- namespace: 이 매퍼가 어떤 인터페이스와 관련된 매퍼인지 알려줌 -->	
 <mapper namespace="com.study.springboot.dao.ISimpleBbsDao">
 
+	<!-- id: 관련 인터페이스에 정의된 메서드 이름 -->	
 	<select id="listDao" resultType="com.study.springboot.dto.SimpleBbsDto">
 		SELECT * FROM simpleBoard ORDER BY id DESC
 	</select>
 	
+	<!-- 파라미터방법1 : 인덱스 -->
 	<select id="viewDao" resultType="com.study.springboot.dto.SimpleBbsDto">
 		SELECT * FROM simpleBoard WHERE id = #{0}
 	</select>
 	
+	<!-- 파라미터방법2 : HashMap의 key이름 -->
 	<insert id="writeDao" parameterType="java.util.HashMap">
 		INSERT INTO simpleBoard (id, writer, title, content)
 		VALUES (simpleBoard_seq.nextval, #{item1}, #{item2}, #{item3})
 	</insert>
 	
+	<!-- 파라미터방법3 : @Param 어노테이션 -->
 	<delete id="deleteDao">
 		delete from simpleBoard where id = #{_id}
 	</delete>
 	
+	<!-- 데이터타입이 원시형인 경우 언더바를 앞에 붙여줌, 붙이지 않는 경우: 래퍼클래스로 변환됨 -->
 	<select id="articleCount" resultType="_int">
 		select count(*) from simpleBoard
 	</select>
