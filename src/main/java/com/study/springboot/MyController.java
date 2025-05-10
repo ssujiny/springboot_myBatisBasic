@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.study.springboot.jdbc.IMyUserDao;
+import com.study.springboot.service.IChartService;
 import com.study.springboot.service.ISimpleBbsService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -32,6 +33,9 @@ public class MyController {
 	
 	@Autowired
 	ISimpleBbsService bbs;
+	
+	@Autowired
+	IChartService chart;
 	
 	@GetMapping("/")
 	public String root() throws Exception {
@@ -116,5 +120,15 @@ public class MyController {
 		
 		return mv;
 		
+	}
+	
+	// chart data
+	@GetMapping("/chart")
+	public String chartList(Model model) {
+
+		model.addAttribute("list", chart.chartList());
+		model.addAttribute("convertData", chart.convertData());
+		
+		return "/chart";
 	}
 }
